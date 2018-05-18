@@ -1,0 +1,70 @@
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand ml-2" href="/"><h3><strong>Market UN</strong></h3></a>
+    <form class="form-inline my-2 my-lg-0">
+        <img class="rounded-circle mx-2" src="image/hugo.jpeg" width="60" height="60">        
+        <h3><strong class="mx-4">Javier Duque</strong></h3>
+        {{link-to "Mi perfil" "perfil.mostrar" perfil class="btn btn-warning mx-3"}}
+        <button class="btn btn-danger my-2 my-sm-0" {{action 'Cerrar'}}>Cerrar sesion</button>
+    </form>
+</nav>
+<div class="d-flex flex-row justify-content-between">
+    
+    <div class="row card-deck px-4 py-4">
+     {{#each model as |publicacion|}}
+        <div class="card col-md-3">
+            <img class="card-img-top" src="{{publicacion.foto}}" alt="{{publicacion.title}}">
+            <div class="card-body">
+                <h5 class="card-title rounded">{{publicacion.title}}Card title</h5>
+                <p class="card-text">{{publicacion.descripcion}}This is a wider card with supporting text below as a natural lead-in to additional content. This content is a
+                    little bit longer.</p>
+            </div>
+            <div class="card-footer d-flex flex-row justify-content-between ">
+                <small class="text-muted">Precio: $ {{publicacion.precio}}</small>
+                <button class="btn btn-success">Contactar</button>
+            </div>
+        </div>
+    {{/each}}
+        <div class="card col-md-3">
+            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card col-md-3">
+            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card col-md-3">
+            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even
+                    longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card col-md-3">
+            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer
+                    content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+</div>

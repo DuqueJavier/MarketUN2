@@ -1,0 +1,108 @@
+{{#if session.isAuthenticated}}
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">MarketUN</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"> Quienes somos</a>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-danger my-2 my-sm-0" {{action 'Cerrar'}}>Cerrar sesion</button>
+        </form>
+    </nav>
+
+    <h2>Bienvenido ya se encuentra registrado</h2>
+
+{{else}}
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand ml-2" href="/">
+            <h3>
+                <strong>Market UN</strong>
+            </h3>
+        </a>
+    
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> Quienes somos</a>
+                </li>
+            </ul>
+        </form>
+        
+    </nav>
+
+    <div class="d-flex flex-row justify-content-around my-3 mx-5">        
+        
+        
+        <div>
+            <br><strong>Si no tienes una cuenta puedes registrarte</strong><br>   <br>
+        
+            <form>
+                <div class="form-group">                              
+                    <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie más.</small><br>
+                    {{input type="email" class="form-control" value=emailR id="emailR" placeholder="Correo Electronico"}}<br>
+                    {{input type="email" class="form-control" value=emailR2 id="emailR2" placeholder="Confirmar Correo Electronico"}}  
+                </div>
+                <div class="form-group">
+                    {{input type="text" class="form-control" value=nombres id="nombres" placeholder="Nombres"}} <br>
+                    {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="Apellidos"}}
+                </div>
+                <div class="form-group">
+                    {{input type="text" class="form-control" value=celular id="celular" placeholder="Numero de celular"}}
+                </div><br>
+                {{#if camposEnBlanco}}
+                <br>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Hay campos que no han sido llenados o son muy cortos
+                </div><br>
+                <br>
+                {{else if correosNoCoinciden}}
+                <br>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Los correos no coinciden
+                </div>
+                {{/if}}
+                <div class="d-flex flex-row justify-content-around">
+                    <button class="btn btn-primary" {{action 'registrar' argument}}> REGISTRAR </button>               
+                </div> 
+            </form>      
+        </div>
+        
+        <div class="col-md-4">     <br><br>
+            <strong class="ml-5">¡Hola! Ingresa con tu e‑mail y contraseña</strong>      <br>
+            <br>
+            <form method="post">
+                <div class="form-group">
+                    {{input type="email" class="form-control" value=email id="InputEmail" aria-describedby="emailHelp" placeholder="Correo Electronico"}}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{input type="password" value=password class="form-control" id="InputContraseña" placeholder="Contraseña"}}
+                </div>
+                <br>
+                <div class="d-flex flex-row justify-content-around">
+                    <button class="btn btn-primary" {{action 'ingresar'}}> INGRESAR </button>
+                    {{link-to "INGRESAR" "principal" class="btn btn-primary"}}
+                </div>         <br>
+                
+                <!--Error de login-->
+                {{#if error}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Datos erroneos!</strong>Correo Electronico o Contraseña son incorrectos
+                </div>                                
+                <!-- Error campos vacios-->
+                {{else if vacio}}
+                <span class="Danger">Hay campos que estan vacios</span>
+                <!-- Sin errores -->
+                {{else if ok}}
+                <span class="Success">Los datos son correctos</span>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+{{/if}}
+
+    
+
+        
