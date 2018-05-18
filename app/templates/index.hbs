@@ -40,9 +40,10 @@
         
             <form>
                 <div class="form-group">                              
-                    <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie más.</small><br>
                     {{input type="email" class="form-control" value=emailR id="emailR" placeholder="Correo Electronico"}}<br>
-                    {{input type="email" class="form-control" value=emailR2 id="emailR2" placeholder="Confirmar Correo Electronico"}}  
+                    {{input type="email" class="form-control" value=emailR2 id="emailR2" placeholder="Confirmar Correo Electronico"}}<br>
+                    {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="Constraseña"}}
+ 
                 </div>
                 <div class="form-group">
                     {{input type="text" class="form-control" value=nombres id="nombres" placeholder="Nombres"}} <br>
@@ -50,15 +51,12 @@
                 </div>
                 <div class="form-group">
                     {{input type="text" class="form-control" value=celular id="celular" placeholder="Numero de celular"}}
-                </div><br>
+                </div>
                 {{#if camposEnBlanco}}
-                <br>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    Hay campos que no han sido llenados o son muy cortos
-                </div><br>
-                <br>
+                    Hay campos que no han sido llenados
+                </div>
                 {{else if correosNoCoinciden}}
-                <br>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     Los correos no coinciden
                 </div>
@@ -80,24 +78,23 @@
                 <div class="form-group">
                     {{input type="password" value=password class="form-control" id="InputContraseña" placeholder="Contraseña"}}
                 </div>
-                <br>
+                <!--Error de login-->
+                {{#if error}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Datos erroneos!</strong>Correo Electronico o Contraseña son incorrectos
+                </div>
+                <!-- Error campos vacios-->
+                {{else if vacio}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Hay campos que estan vacios
+                </div>
+                {{/if}}
                 <div class="d-flex flex-row justify-content-around">
                     <button class="btn btn-primary" {{action 'ingresar'}}> INGRESAR </button>
                     {{link-to "INGRESAR" "principal" class="btn btn-primary"}}
                 </div>         <br>
                 
-                <!--Error de login-->
-                {{#if error}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Datos erroneos!</strong>Correo Electronico o Contraseña son incorrectos
-                </div>                                
-                <!-- Error campos vacios-->
-                {{else if vacio}}
-                <span class="Danger">Hay campos que estan vacios</span>
-                <!-- Sin errores -->
-                {{else if ok}}
-                <span class="Success">Los datos son correctos</span>
-                {{/if}}
+                
             </form>
         </div>
     </div>

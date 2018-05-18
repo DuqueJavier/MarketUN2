@@ -1,18 +1,21 @@
 import Controller from '@ember/controller';
-import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+    firebaseApp: service(),
+    /*firebase: service('firebase-app'),*/
+
     correosNoCoinciden: false, camposEnBlanco: false, vacio: false, error: false, ok: false,
-    correo1: '', correo2: '',
-    /*firebase: service();*/
+    emailR: '', emailR2: '', nombres: '', apellidos: '', celular: '', contrasena: '', 
+    email: '', password:'',
     
-    actions: {
+    actions: { 
         registrar(){
-            const correo1 = this.get('emailR').trim();const correo2 = this.get('emailR2').trim();
-            const nombresInput = this.get('nombres').trim();
-            const apellidosInput = this.get('apellidos').trim();
-            const celularInput = this.get('celular').trim();
-            const contrasenaInput = this.get('contrasena').trim();
+            let correo1 = this.get('emailR');let correo2 = this.get('emailR2');
+            let nombresInput = this.get('nombres');
+            let apellidosInput = this.get('apellidos');
+            let celularInput = this.get('celular');
+            let contrasenaInput = this.get('contrasena');
             if (nombresInput.length < 3 || apellidosInput.length < 3 || celularInput.length < 3 || correo1.length < 2){
                 this.set('camposEnBlanco', true);
                 setTimeout(() => {
@@ -20,13 +23,21 @@ export default Controller.extend({
                 }, 5000);
                 return;        
             }else if(correo1 === correo2){
-                firebase.auth().createUserWithEmailAndPassword(correo1, contrasenaInput).catch(function (error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorCode);
-                    console.log(errorMessage);
-                    // transitionTo Perfil
-                });
+                this.get('firebaseApp').auth().createUserWithEmailAndPassword(correo1, contrasenaInput).then(
+                    function () {
+                        /*let perfiles = this.get('model');
+                        perfiles.pushObject({
+                            email: correo,
+                            nombres: nombresInput,
+                            apellidos: apellidosInput,
+                            celular: celularInput,
+                        });*/
+                        transitionToRoute('principal');
+                    }, function (error) {
+                        var errorMessage = error.message;
+                        console.log(errorMessage);
+                    }
+                );
             }else{
                 this.set('correosNoCoinciden', true);
                 setTimeout(() => {
@@ -34,19 +45,12 @@ export default Controller.extend({
                 }, 5000);
                 return;
             }
-            /*transitionToRoute('principal');
 
-            /*const perfiles = this.get('model');
-            perfiles.pushObject({
-                email: correo,
-                nombres: nombresInput,
-                apellidos: apellidosInput,
-                celular: celularInput,
-            });*/
+            
         },
         ingresar(){
-            const email = this.get('email').trim();
-            const pass = this.get('password').trim();
+            let email = this.get('email');
+            let pass = this.get('password').trim();
             if (email === "" || pass === ""){
                 this.set('vacio', true);
                 setTimeout(() => {
@@ -54,18 +58,14 @@ export default Controller.extend({
                 }, 5000);
                 return;
             }else{
-                firebase.auth().signInWithEmailAndPassword(email, pass).catch(function (error) {
-                    this.set('error', true);
-                    setTimeout(() => {
-                        this.set('error', false);
-                    }, 5000);
-                    return;
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorCode);
-                    console.log(errorMessage);
-                    //transitionTo principal
-                });
+                this.get('firebaseApp').auth().signInWithEmailAndPassword(email, pass).then(
+                    function (){
+                        transitionToRoute('principal');
+                    }, function (error) {
+                        var errorMessage = error.message;
+                        console.log(errorMessage);
+                    }
+                );                      
             }
         }
     },
