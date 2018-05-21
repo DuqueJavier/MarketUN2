@@ -2,4 +2,19 @@
     border-radius: 50% !important;
     border: solid 3px #efefef;
     box-shadow: 2px 2px 20px #666; 
+    width: 60px;
+    height: 60px;
+}
+.navbar-perfil{ 
+    position: fixed;
+    z-index: 400; 
+    height: 90vh;  
+    background: rgb(223, 223, 224); 
+}
+
+.titulo-perfil{
+    color: #F59300;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    max-width: 430px;    
 }

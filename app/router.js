@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('registro');
   this.route('perfil');
   this.route('detalle');
+  this.route('editar-perfil');
 });
 
 export default Router;

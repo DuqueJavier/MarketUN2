@@ -1,6 +1,8 @@
 {{#if session.isAuthenticated}}
     <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">MarketUN</a>
+        {{#link-to 'index' class="navbar-brand"}}
+            <h3>MarketUN</h3>
+        {{/link-to}}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#"> Quienes somos</a>
@@ -8,7 +10,7 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-danger my-2 my-sm-0" {{action 'Cerrar'}}>Cerrar sesion</button>
+            <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
         </form>
     </nav>
 
@@ -16,12 +18,9 @@
 
 {{else}}
     <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand ml-2" href="/">
-            <h3>
-                <strong>Market UN</strong>
-            </h3>
-        </a>
-    
+        {{#link-to 'index' class="navbar-brand ml-2"}}
+            <h3><strong>Market UN</strong></h3>
+        {{/link-to}}    
         <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -34,7 +33,7 @@
 
     <div class="d-flex flex-row justify-content-around my-3 mx-5">        
         
-        
+        <!-- Registro -->
         <div>
             <br><strong>Si no tienes una cuenta puedes registrarte</strong><br>   <br>
         
@@ -50,7 +49,7 @@
                     {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="Apellidos"}}
                 </div>
                 <div class="form-group">
-                    {{input type="text" class="form-control" value=celular id="celular" placeholder="Numero de celular"}}
+                    {{input type="number" min="999999" max="10000000000" class="form-control" value=celular id="celular" placeholder="Numero de celular"}}
                 </div>
                 {{#if camposEnBlanco}}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -60,13 +59,18 @@
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     Los correos no coinciden
                 </div>
+                {{else if correoEnUso}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    El correo indicado ya tiene una cuenta registrada
+                </div>
                 {{/if}}
                 <div class="d-flex flex-row justify-content-around">
-                    <button class="btn btn-primary" {{action 'registrar' argument}}> REGISTRAR </button>               
+                    <button type="submit" class="btn btn-primary" {{action 'registrar' argument}}> REGISTRAR </button>               
                 </div> 
             </form>      
         </div>
-        
+
+        <!-- Login -->
         <div class="col-md-4">     <br><br>
             <strong class="ml-5">¡Hola! Ingresa con tu e‑mail y contraseña</strong>      <br>
             <br>
@@ -88,10 +92,17 @@
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     Hay campos que estan vacios
                 </div>
+                {{else if correoNoRegistrado}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    El correo indicado no se encuentra registrado
+                </div>
+                {{else if contrasenaNoValida}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    La contraseña que ingresaste es incorrecta
+                </div>
                 {{/if}}
                 <div class="d-flex flex-row justify-content-around">
                     <button class="btn btn-primary" {{action 'ingresar'}}> INGRESAR </button>
-                    {{link-to "INGRESAR" "principal" class="btn btn-primary"}}
                 </div>         <br>
                 
                 
