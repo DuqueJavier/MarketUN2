@@ -9,6 +9,7 @@
         <h3>
             <strong class="mx-4">Javier Duque</strong>
         </h3>
+        {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
         <button class="btn btn-danger my-2 " {{action 'cerrar'}}>Cerrar Sesion</button>
     </form>
 </nav>
@@ -19,7 +20,7 @@
         <form>
             <div class="form-group">
                 <label><strong>No se puede cambiar el correo, si lo desea puede registrar una cuenta nueva</strong></label>
-                {{input type="email" class="form-control" value=emailR id="emailR" placeholder="{{perfil.correo}}"}}
+                <div class="form-control input-group-text">{{perfil.correo}}JKASDJABDHJ@ </div>
                 <br> {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="************"}}
             </div>
             <div class="form-group">

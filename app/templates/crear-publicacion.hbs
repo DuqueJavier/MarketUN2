@@ -1,0 +1,53 @@
+<nav class="navbar navbar-dark bg-primary">
+    {{#link-to 'principal' class="navbar-brand ml-2"}}
+    <h3>
+        <strong>Market UN</strong>
+    </h3>
+    {{/link-to}}
+    <form class="form-inline my-2 my-lg-0">
+        <img class="rounded-circle mx-2" src="" width="60" height="60">
+        <h3>
+            <strong class="mx-4">Javier Duque</strong>
+        </h3>
+        {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
+        <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
+    </form>
+</nav>
+
+<div class="col-md-9 ml-5">
+    <br><strong>Puedes crear publicaciones totalmente gratis</strong> <br><br>
+
+    <form>
+        <div class="form-group">
+            <!--<select class="form-control">
+                {{#select categoria}}
+                <option value="Completed">Completed</option>
+                <option value="OverDue">OverDue</option>
+                <option value="SentToPayer">SentToPayer</option>
+                <option value="None">None</option>
+                {{/select}}
+            </select> -->
+            <br> {{input type="text" class="form-control" value=titulo id="titulo" placeholder="Titulo de la publicación"}}
+            <br> {{textarea type="text" class="form-control" value=descripcion id="descripcion" placeholder="Breve descripcion de tu producto"}}
+            <br> {{input type="text" class="form-control" value=precio id="precio" placeholder="Precio en pesos colombianos sin puntos"}}
+            <br> {{input type="text" class="form-control" value=foto id="foto" placeholder="URL de la imagen"}}
+
+        </div>        
+        {{#if camposEnBlanco}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Hay campos que no han sido llenados
+        </div>
+        {{else if correosNoCoinciden}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Los correos no coinciden
+        </div>
+        {{else if correoEnUso}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            El correo indicado ya tiene una cuenta registrada
+        </div>
+        {{/if}}
+        <div class="d-flex flex-row justify-content-around">
+            <button type="submit" class="btn btn-success" {{action 'crear' perfil.uid}}>CREAR PUBLICACIÓN</button>
+        </div>
+    </form>
+</div>

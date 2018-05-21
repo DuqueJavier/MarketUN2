@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('perfil');
   this.route('detalle');
   this.route('editar-perfil');
+  this.route('crear-publicacion');
 });
 
 export default Router;

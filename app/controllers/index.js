@@ -14,22 +14,24 @@ export default Controller.extend({
             let correo1 = this.get('emailR');let correo2 = this.get('emailR2');
             let nombresInput = this.get('nombres');  let apellidosInput = this.get('apellidos');
             let celularInput = this.get('celular');  let contrasenaInput = this.get('contrasena');
-            if (nombresInput.length < 3 || apellidosInput.length < 3 || celularInput.length < 3 || correo1.length < 2){
+            if (nombresInput.length < 2 || apellidosInput.length < 2 || celularInput.length < 2 || correo1.length < 2){
                 this.set('camposEnBlanco', true);
                 setTimeout(() => {
                     this.set('camposEnBlanco', false);
                 }, 5000);       
             }else if(correo1 === correo2){                
                 this.get('firebaseApp').auth().createUserWithEmailAndPassword(correo1, contrasenaInput).then(
-                    () =>{
-                        console.log('entro');
+                    (user) =>{
+                        var uid = user.uid;
                         let newPerfil = this.get('store').createRecord('perfiles', {
                             correo: correo1,
                             nombres: nombresInput,
                             apellidos: apellidosInput,
                             celular: celularInput,
+                            uid: uid,
                         });
                         newPerfil.save();
+
                     },(error) =>{
                         var errorMessage = error.message;
                         if (errorMessage === 'The email address is already in use by another account.'){
