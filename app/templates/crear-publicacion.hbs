@@ -15,8 +15,12 @@
 </nav>
 
 <div class="col-md-9 ml-5">
+    {{#if publicacionCreada}}
+        <br><br>
+        <h2 class="ml-5"><strong>Tu publicacion se ha creado exitosamente! </strong></h2>
+        <br><br>
+    {{else}}
     <br><strong>Puedes crear publicaciones totalmente gratis</strong> <br><br>
-
     <form>
         <div class="form-group">
             <!--<select class="form-control">
@@ -29,13 +33,13 @@
             </select> -->
             <br> {{input type="text" class="form-control" value=titulo id="titulo" placeholder="Titulo de la publicación"}}
             <br> {{textarea type="text" class="form-control" value=descripcion id="descripcion" placeholder="Breve descripcion de tu producto"}}
-            <br> {{input type="text" class="form-control" value=precio id="precio" placeholder="Precio en pesos colombianos sin puntos"}}
+            <br> {{input type="text" class="form-control" value=precio id="precio" placeholder="Precio en pesos colombianos"}}
             <br> {{input type="text" class="form-control" value=foto id="foto" placeholder="URL de la imagen"}}
 
         </div>        
         {{#if camposEnBlanco}}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            Hay campos que no han sido llenados
+            Hay campos en blanco o muy cortos
         </div>
         {{else if correosNoCoinciden}}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -45,9 +49,10 @@
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             El correo indicado ya tiene una cuenta registrada
         </div>
-        {{/if}}
+        {{/if}}<br>
         <div class="d-flex flex-row justify-content-around">
-            <button type="submit" class="btn btn-success" {{action 'crear' perfil.uid}}>CREAR PUBLICACIÓN</button>
+            <button type="submit" class="btn btn-success" {{action 'crear'}}>PUBLICAR</button>
         </div>
     </form>
+    {{/if}}
 </div>

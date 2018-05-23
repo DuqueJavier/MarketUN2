@@ -18,20 +18,22 @@
     <div>
         <br>           
         <form>
+            {{#each model.perfil as |uno|}}
             <div class="form-group">
                 <label><strong>No se puede cambiar el correo, si lo desea puede registrar una cuenta nueva</strong></label>
-                <div class="form-control input-group-text">{{perfil.correo}}JKASDJABDHJ@ </div>
+                <div class="form-control input-group-text">{{uno.correo}}</div><br>
+                <label><strong>Contraseña</strong></label>
                 <br> {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="************"}}
             </div>
             <div class="form-group">
                 <label><strong>Nombres</strong></label>
-                {{input type="text" class="form-control" value=nombres id="nombres" placeholder="{{perfil.nombre}}"}}
+                {{input type="text" class="form-control" value=nombres id="nombres" placeholder="{{uno.nombre}}"}}
                 <br><label><strong>Apellidos</strong></label> 
-                {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="{{perfil.apellidos}}"}}
+                {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="{{uno.apellidos}}"}}
             </div>
             <div class="form-group">
                 <label><strong>Celular</strong></label>
-                {{input type="text" class="form-control" value=celular id="celular" placeholder="{{perfil.celular}}"}}
+                {{input type="text" class="form-control" value=celular id="celular" placeholder="{{uno.celular}}"}}
             </div>
             {{#if camposEnBlanco}}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -41,6 +43,7 @@
             <div class="d-flex flex-row justify-content-around">
                 <button class="btn btn-success" {{action 'editar' perfil}}> Editar </button>
             </div>
+        {{/each}}
         </form>
     </div>
 

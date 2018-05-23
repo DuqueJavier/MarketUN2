@@ -3,46 +3,50 @@
         <h3><strong>Market UN</strong></h3>
     {{/link-to}} 
     <form class="form-inline my-2 my-lg-0">
-        <img class="rounded-circle mx-1" src="">
-        <h3>
-            <strong class="mx-4">Javier Duque</strong>
-        </h3>       
-         {{#link-to 'crear-publicacion' class="my-2 mx-3"}}
-            <button class="btn btn-ligth">Crear publicacion</button>
-        {{/link-to}}
-        <button class="btn btn-danger my-2 " {{action 'cerrar'}}>Cerrar Sesion</button>
+        {{#each model.perfil as |uno|}}
+        <img class="rounded-circle mx-2" src="{{uno.urlFoto}}" width="60" height="60">
+        <h3><strong class="mx-4">{{uno.nombres}} </strong></h3>
+        {{link-to 'Publicar' 'crear-publicacion' class="btn btn-light mx-3"}}
+        <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
+        {{/each}}
     </form>
 </nav>
 
 <div class="d-flex flex-row">
     <!--Perfil -->
     <div class="d-flex col-md-3 navbar-perfil"><br>
-        <div>
+    {{#each model.perfil as |uno|}}
+        <div class="ml-3"><br>
             <h3><strong>Mis datos</strong></h3><br>
             <p>
                 <h4>
                     <strong class="titulo-perfil">Correo:</strong><br>
-                    <span>{{perfil.correo}}jaaduquelu@gmail.com</span>
+                    <span>{{uno.correo}}</span>
                 </h4>                
             </p><br>
             <p>
                 <h4>
                     <strong class="titulo-perfil">Nombre:</strong><br>
-                    <span>{{perfil.nombres}}Javier </span>
-                    <span>{{perfil.apellidos}}Duque </span>
+                    <span>{{uno.nombres}}</span>
+                </h4>                
+            </p><br>
+            <p>
+                <h4>
+                    <strong class="titulo-perfil">Apellidos:</strong><br>
+                    <span>{{uno.apellidos}}</span>
                 </h4>                
             </p><br>
             <p>
                 <h4 >
                     <strong class="titulo-perfil">Celular:</strong><br>
-                    <span>{{perfil.celular}}32143365786</span>
+                    <span>{{uno.celular}}</span>
                 </h4>                
-            </p><br><br>
-            {{#link-to 'editar-perfil' class="navbar-brand ml-2"}}
+            </p><br>
+            {{#link-to 'editar-perfil' class="navbar-brand ml-5"}}
                 <button class="btn btn-warning">Editar datos</button>
-            {{/link-to}}
-                        
+            {{/link-to}}                        
         </div> 
+     {{/each}}
     </div>
 
     <!-- publicaciones propias -->    
@@ -52,13 +56,12 @@
             <div class="card col-md-4">
                 <img class="card-img-top" src="{{publicacion.foto}}" alt="{{publicacion.title}}">
                 <div class="card-body">
-                    <h5 class="card-title rounded">{{publicacion.title}}Card title</h5>
-                    <p class="card-text">{{publicacion.descripcion}}This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
+                    <h5 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h5>
+                    <p class="card-text">{{publicacion.descripcion}}</p>
                 </div>
                 <div class="card-footer d-flex flex-row justify-content-between ">
                     <small class="text-muted">Precio: $ {{publicacion.precio}}</small>
-                    <button class="btn btn-success">Contactar</button>
+                    <button class="btn btn-success">Ver</button>
                 </div>
             </div>
             {{/each}}
@@ -68,4 +71,3 @@
 
 </div>
 
-{{outlet}}

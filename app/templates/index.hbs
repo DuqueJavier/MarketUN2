@@ -5,14 +5,14 @@
         {{/link-to}}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"> Quienes somos</a>
+                <a class="nav-link" href="#">Publica lo que esta vendiendo</a>
             </li>
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
             <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
         </form>
-    </nav>
+    </nav><br>
 
     <h2>Bienvenido ya se encuentra registrado</h2>
 
@@ -24,7 +24,7 @@
         <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"> Quienes somos</a>
+                    <a class="nav-link" href="#">Publica lo que esta vendiendo</a>
                 </li>
             </ul>
         </form>
@@ -41,26 +41,22 @@
                 <div class="form-group">                              
                     {{input type="email" class="form-control" value=emailR id="emailR" placeholder="Correo Electronico"}}<br>
                     {{input type="email" class="form-control" value=emailR2 id="emailR2" placeholder="Confirmar Correo Electronico"}}<br>
-                    {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="Constraseña"}}
- 
-                </div>
-                <div class="form-group">
+                    {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="Constraseña"}}<br>
                     {{input type="text" class="form-control" value=nombres id="nombres" placeholder="Nombres"}} <br>
-                    {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="Apellidos"}}
-                </div>
-                <div class="form-group">
-                    {{input type="number" min="999999" max="10000000000" class="form-control" value=celular id="celular" placeholder="Numero de celular"}}
+                    {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="Apellidos"}}<br>  
+                    {{input type="text" class="form-control" value=urlFoto id="urlFoto" placeholder="URL de la Foto"}}                    <br>
+                    {{input type="number" min="999999" max="10000000000" class="form-control" value=celular id="celular" placeholder="Numero de telefono o celular"}}
                 </div>
                 {{#if camposEnBlanco}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    Hay campos que no han sido llenados
+                <div class="alert alert-warning fade show" role="alert">
+                    Hay campos en blanco o muy cortos
                 </div>
                 {{else if correosNoCoinciden}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     Los correos no coinciden
                 </div>
                 {{else if correoEnUso}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     El correo indicado ya tiene una cuenta registrada
                 </div>
                 {{/if}}
@@ -84,20 +80,20 @@
                 </div>
                 <!--Error de login-->
                 {{#if error}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     <strong>Datos erroneos!</strong>Correo Electronico o Contraseña son incorrectos
                 </div>
                 <!-- Error campos vacios-->
                 {{else if vacio}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     Hay campos que estan vacios
                 </div>
                 {{else if correoNoRegistrado}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     El correo indicado no se encuentra registrado
                 </div>
                 {{else if contrasenaNoValida}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning fade show" role="alert">
                     La contraseña que ingresaste es incorrecta
                 </div>
                 {{/if}}

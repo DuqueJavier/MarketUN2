@@ -11,6 +11,11 @@
     height: 90vh;  
     background: rgb(223, 223, 224); 
 }
+.card-img-top{
+    width: 150px;
+    height: 200px;
+    padding: 1rem;
+}
 
 .titulo-perfil{
     color: #F59300;

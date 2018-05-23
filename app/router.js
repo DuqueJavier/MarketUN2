@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('detalle');
   this.route('editar-perfil');
   this.route('crear-publicacion');
+  this.route('reportes');
 });
 
 export default Router;
