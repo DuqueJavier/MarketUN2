@@ -2,8 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    firebaseApp: service(),    
-    /*firebase: service('firebase-app'),*/
+    firebaseApp: service(),
 
     contrasenaNoValida: false, correoNoRegistrado: false, correoEnUso: false, correosNoCoinciden: false, camposEnBlanco: false, vacio: false, error: false, ok: false,
     emailR: '', emailR2: '', nombres: '', apellidos: '', celular: '', contrasena: '',
@@ -63,28 +62,29 @@ export default Controller.extend({
                 }, 5000);
                 return;
             }else{
-                this.get('firebaseApp').auth().signInWithEmailAndPassword(email, pass).then(
-                     (perfil) =>{
-                         if(perfil.administrador){
-                             this.transitionToRoute('reportes');
-                         }else{
-                             this.transitionToRoute('principal');
-                         }                        
-                    }, (error) => {
-                        var errorMessage = error.message;
-                        if (errorMessage === 'There is no user record corresponding to this identifier.The user may have been deleted.' || errorMessage === 'The email address is badly formatted.') {
-                            this.set('correoNoRegistrado', true);
-                            setTimeout(() => {
-                                this.set('correoNoRegistrado', false);
-                            }, 5000);
-                        } else if (errorMessage === 'The password is invalid or the user does not have a password.'){
-                            this.set('contrasenaNoValida', true);
-                            setTimeout(() => {
-                                this.set('contrasenaNoValida', false);
-                            }, 5000);
-                        }
+                this.get('session').open('firebase', {
+                    provider: 'password',
+                    email,
+                    password: pass,
+                }).then((currentUser) => {
+                    this.set('email', '');
+                    this.set('password', '');
+                    this.transitionToRoute('principal');
+                }, (error) => {
+                    console.log(error);
+                    var errorMessage = error.message;
+                    if (errorMessage === 'There is no user record corresponding to this identifier.The user may have been deleted.' || errorMessage === 'The email address is badly formatted.') {
+                        this.set('correoNoRegistrado', true);
+                        setTimeout(() => {
+                            this.set('correoNoRegistrado', false);
+                        }, 5000);
+                    } else if (errorMessage === 'The password is invalid or the user does not have a password.'){
+                        this.set('contrasenaNoValida', true);
+                        setTimeout(() => {
+                            this.set('contrasenaNoValida', false);
+                        }, 5000);
                     }
-                );                      
+                });                      
             }
         }
     },

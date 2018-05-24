@@ -3,12 +3,10 @@
         <h3><strong>Market UN</strong></h3>    
     {{/link-to}}
     <form class="form-inline my-2 my-lg-0">
-        {{#each model.perfil as |uno|}}
-        <img class="rounded-circle mx-2" src="{{uno.urlFoto}}" width="60" height="60">        
-        <h3><strong class="mx-4">{{uno.nombres}} </strong></h3>
+        <img class="rounded-circle mx-2" src="{{model.perfil.urlFoto}}" width="60" height="60">        
+        <h3><strong class="mx-4">{{model.perfil.nombres}} </strong></h3>
         {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
         <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
-        {{/each}}
     </form>
 </nav>
 <div class="d-flex flex-row justify-content-between">
@@ -16,14 +14,14 @@
     <div class="row card-deck px-4 py-4">
      {{#each model.publicaciones as |publicacion|}}
         <div class="card col-md-3">
-            <img class="card-img-top" src="{{publicacion.foto}}" alt="{{publicacion.titulo}}">
+            <img class="card-img-top" src="{{publicacion.foto}}">
             <div class="card-body">
                 <h5 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h5>
                 <p class="card-text">{{publicacion.descripcion}}</p>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between ">
                 <small class="text-muted">Precio: $ {{publicacion.precio}}</small>
-                <button class="btn btn-success">Ver</button>
+                <!-- boton ampliar -->
             </div>
         </div>
     {{/each}}   

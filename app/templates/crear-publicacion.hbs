@@ -5,9 +5,9 @@
     </h3>
     {{/link-to}}
     <form class="form-inline my-2 my-lg-0">
-        <img class="rounded-circle mx-2" src="" width="60" height="60">
+        <img class="rounded-circle mx-1" src="{{model.perfil.urlFoto}}">
         <h3>
-            <strong class="mx-4">Javier Duque</strong>
+            <strong class="mx-4">{{model.perfil.nombres}}</strong>
         </h3>
         {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
         <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
@@ -51,7 +51,7 @@
         </div>
         {{/if}}<br>
         <div class="d-flex flex-row justify-content-around">
-            <button type="submit" class="btn btn-success" {{action 'crear'}}>PUBLICAR</button>
+            <button type="submit" class="btn btn-success" {{action 'crear' model.perfil}}>PUBLICAR</button>
         </div>
     </form>
     {{/if}}

@@ -1,24 +1,13 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+import ValidarUsuarioMixin from "../mixins/validar-usuario";
 
-export default Route.extend({
-  firebaseApp: service(), uid: 'Uz8kEoTjrQMLdyPgy23YLq0s6XJ2',
+export default Route.extend(ValidarUsuarioMixin, {
 
-  beforeModel: function () {
-      this.get('firebaseApp').auth().onAuthStateChanged((perfil) => {
-        if (perfil) {
-          var uid = perfil.uid;
-          this.set('uid', uid);
-        } else {
-          this.transitionTo('index');
-        }
-      });
-  },
-  model: function(){  
-      let uid = this.get('uid');   
-    return {      
-      perfil: this.store.query('perfiles', { orderBy: 'uid', equalTo: uid}),
+  model: function(){ 
+    return hash({      
+      perfil: this.modelFor('application').get('firstObject'),
       publicaciones: this.store.findAll('publicaciones'),
-    }
-  },    
+    });
+  },
 });
