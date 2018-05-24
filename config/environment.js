@@ -12,6 +12,10 @@ module.exports = function(environment) {
       databaseURL: "https://market-un.firebaseio.com",
       projectId: "market-un",
       storageBucket: "market-un.appspot.com",
+      messagingSenderId: "659024394066"
+    },
+    torii: {
+      sessionServiceName: 'session'
     },
     EmberENV: {
       FEATURES: {
