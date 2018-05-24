@@ -6,12 +6,10 @@ const Router = EmberRouter.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  this.route('index', { path: '/' });
+Router.map(function() { 
   this.route('principal');
   this.route('registro');
-  this.route('perfil');
-  this.route('detalle');
+  this.route('perfil', );
   this.route('editar-perfil');
   this.route('crear-publicacion');
   this.route('reportes');

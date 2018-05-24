@@ -5,9 +5,9 @@
     </h3>
     {{/link-to}}
     <form class="form-inline my-2 my-lg-0">
-        <img class="rounded-circle mx-1" src="">
+        <img class="rounded-circle mx-1" src="{{model.perfil.urlFoto}}">
         <h3>
-            <strong class="mx-4">Javier Duque</strong>
+            <strong class="mx-4">{{model.perfil.nombres}}</strong>
         </h3>
         {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
         <button class="btn btn-danger my-2 " {{action 'cerrar'}}>Cerrar Sesion</button>
@@ -17,23 +17,23 @@
 <div class="d-flex flex-row justify-content-around">
     <div>
         <br>           
-        <form>
-            {{#each model.perfil as |uno|}}
+        <form>            
             <div class="form-group">
                 <label><strong>No se puede cambiar el correo, si lo desea puede registrar una cuenta nueva</strong></label>
-                <div class="form-control input-group-text">{{uno.correo}}</div><br>
+                <div class="alert alert-secondary" role="alert">
+                    {{model.perfil.correo}}
+                </div>
+                <div class="alert alert-success fade show" role="alert">
+                    Edite solo los campos que desea cambiar
+                </div>
                 <label><strong>Contraseña</strong></label>
-                <br> {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="************"}}
-            </div>
-            <div class="form-group">
+                {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="************"}}
                 <label><strong>Nombres</strong></label>
-                {{input type="text" class="form-control" value=nombres id="nombres" placeholder="{{uno.nombre}}"}}
-                <br><label><strong>Apellidos</strong></label> 
-                {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="{{uno.apellidos}}"}}
-            </div>
-            <div class="form-group">
+                {{input type="text" class="form-control" value=nombres id="nombres" placeholder=model.perfil.nombres}}
+                <label><strong>Apellidos</strong></label> 
+                {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder=model.perfil.apellidos}}
                 <label><strong>Celular</strong></label>
-                {{input type="text" class="form-control" value=celular id="celular" placeholder="{{uno.celular}}"}}
+                {{input type="text" class="form-control" value=celular id="celular" placeholder=model.perfil.celular}}
             </div>
             {{#if camposEnBlanco}}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -41,10 +41,9 @@
             </div>
             {{/if}}
             <div class="d-flex flex-row justify-content-around">
-                <button class="btn btn-success" {{action 'editar' perfil}}> Editar </button>
+                <button class="btn btn-success" {{action 'editar' model.perfil}}> Editar </button>
             </div>
-        {{/each}}
+        
         </form>
     </div>
-
 </div>

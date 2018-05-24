@@ -23,3 +23,12 @@
     margin-bottom: 15px;
     max-width: 430px;    
 }
+
+.item{
+  color: #5a5a5a;
+  padding: 1em;
+  margin:1.5em;
+  list-style:none;
+  border-radius: 1em;
+  background-color: rgb(218, 218, 218);
+}

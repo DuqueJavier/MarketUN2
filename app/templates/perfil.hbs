@@ -3,50 +3,46 @@
         <h3><strong>Market UN</strong></h3>
     {{/link-to}} 
     <form class="form-inline my-2 my-lg-0">
-        {{#each model.perfil as |uno|}}
-        <img class="rounded-circle mx-2" src="{{uno.urlFoto}}" width="60" height="60">
-        <h3><strong class="mx-4">{{uno.nombres}} </strong></h3>
+        <img class="rounded-circle mx-2" src="{{model.perfil.urlFoto}}" width="60" height="60">
+        <h3><strong class="mx-4">{{model.perfil.nombres}} </strong></h3>
         {{link-to 'Publicar' 'crear-publicacion' class="btn btn-light mx-3"}}
         <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
-        {{/each}}
     </form>
 </nav>
 
 <div class="d-flex flex-row">
     <!--Perfil -->
     <div class="d-flex col-md-3 navbar-perfil"><br>
-    {{#each model.perfil as |uno|}}
         <div class="ml-3"><br>
             <h3><strong>Mis datos</strong></h3><br>
             <p>
                 <h4>
                     <strong class="titulo-perfil">Correo:</strong><br>
-                    <span>{{uno.correo}}</span>
+                    <span>{{model.perfil.correo}}</span>
                 </h4>                
             </p><br>
             <p>
                 <h4>
                     <strong class="titulo-perfil">Nombre:</strong><br>
-                    <span>{{uno.nombres}}</span>
+                    <span>{{model.perfil.nombres}}</span>
                 </h4>                
             </p><br>
             <p>
                 <h4>
                     <strong class="titulo-perfil">Apellidos:</strong><br>
-                    <span>{{uno.apellidos}}</span>
+                    <span>{{model.perfil.apellidos}}</span>
                 </h4>                
             </p><br>
             <p>
                 <h4 >
                     <strong class="titulo-perfil">Celular:</strong><br>
-                    <span>{{uno.celular}}</span>
+                    <span>{{model.perfil.celular}}</span>
                 </h4>                
             </p><br>
-            {{#link-to 'editar-perfil' class="navbar-brand ml-5"}}
+            {{#link-to 'editar-perfil'}}
                 <button class="btn btn-warning">Editar datos</button>
             {{/link-to}}                        
         </div> 
-     {{/each}}
     </div>
 
     <!-- publicaciones propias -->    
@@ -54,7 +50,7 @@
         <div class="row card-deck px-4 py-4">
             {{#each model.publicaciones as |publicacion|}}
             <div class="card col-md-4">
-                <img class="card-img-top" src="{{publicacion.foto}}" alt="{{publicacion.title}}">
+                <img class="card-img-top" src="{{publicacion.foto}}">
                 <div class="card-body">
                     <h5 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h5>
                     <p class="card-text">{{publicacion.descripcion}}</p>
