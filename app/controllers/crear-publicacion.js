@@ -17,7 +17,7 @@ export default Controller.extend({
         },
         
         crear(perfil){ 
-            var uid = perfil.uid;
+            var correo = perfil.correo; 
             let tituloInput = this.get('titulo');
             let descripcionInput = this.get('descripcion');
             let precioInput = this.get('precio');
@@ -36,7 +36,7 @@ export default Controller.extend({
                     foto: fotoinput,
                     precio: precioInput,
                     descripcionReporte: descripcionReporteInput,
-                    uidPerfil: uid,
+                    correo: correo,
                 });
                 newPublicacion.save();
                 this.set('publicacionCreada', true);

@@ -9,21 +9,31 @@
         <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
     </form>
 </nav>
-<div class="d-flex flex-row justify-content-between">
+
+<div class="d-flex flex-row justify-content-between">   
     
     <div class="row card-deck px-4 py-4">
-     {{#each model.publicaciones as |publicacion|}}
-        <div class="card col-md-3">
-            <img class="card-img-top" src="{{publicacion.foto}}">
-            <div class="card-body">
-                <h5 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h5>
-                <p class="card-text">{{publicacion.descripcion}}</p>
-            </div>
-            <div class="card-footer d-flex flex-row justify-content-between ">
-                <small class="text-muted">Precio: $ {{publicacion.precio}}</small>
-                <!-- boton ampliar -->
-            </div>
-        </div>
-    {{/each}}   
+     {{#each model.publicaciones as |publicacion|}}        
+         <div class="card">   
+            {{#link-to "publicacion" publicacion.id class="tarjeta"}}
+                <img class="card-img-top" src="{{publicacion.foto}}">
+                <div class="card-body">
+                    <h4 class="card-title rounded">
+                        <strong>{{publicacion.titulo}}</strong>
+                    </h4>
+                </div>
+            {{/link-to}}
+                <div class="card-footer d-flex flex-row justify-content-between">
+                    <div>
+                        <h4>
+                            <strong>Precio:   $</strong>
+                        </h4>
+                    </div>
+                    <div>
+                        <h4>{{publicacion.precio}}</h4>
+                    </div>
+                </div>                       
+            </div>        
+        {{/each}}   
     </div>
 </div>

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-dark bg-primary">
+    {{#link-to 'principal' class="navbar-brand ml-2"}}
+    <h3>
+        <strong>Market UN</strong>
+    </h3>
+    {{/link-to}}
+    <form class="form-inline my-2 my-lg-0">
+        <img class="rounded-circle mx-2" src="{{model.perfil.urlFoto}}" width="60" height="60">
+        <h3>
+            <strong class="mx-4">{{model.perfil.nombres}} </strong>
+        </h3>
+        {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
+        <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
+    </form>
+</nav>
+
+<div class="d-flex publicacion align-self-start">
+    {{#each model.publicaciones as |uno|}}
+        <div class="col-md-3">
+            <img class="img-thumbnail img-fluid" src="{{uno.foto}}">
+        </div>
+        <div class="col-md-5 ">
+            <div class="card text-center ">
+                <div class="card-header">
+                    <h3>
+                        <strong>{{uno.titulo}}</strong>
+                    </h3>
+                </div>
+                <div class="card-body ">
+                    {{uno.descripcion}}
+                </div>
+                <div class="card-footer text-muted d-flex flex-row justify-content-between">
+                    <div>
+                        <h4>Precio: $</h4>
+                    </div>
+                    <div>
+                        <h4>{{uno.precio}}</h4>
+                    </div>
+                </div>
+            </div>           
+            
+        </div>
+        <div class="col-md-4 text-center">
+            <h4><strong>Para obtener este producto debes comunicarte con el vendedor </strong></h4><br>
+            <button class="btn btn-danger my-2 my-sm-0" {{action 'ver'}}>Ver datos</button>
+            {{outlet}}
+        </div>       
+    {{/each}}
+</div>
+

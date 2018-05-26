@@ -23,6 +23,7 @@ export default Controller.extend({
                 this.get('firebaseApp').auth().createUserWithEmailAndPassword(correo1, contrasenaInput).then(
                     (user) =>{
                         var uid = user.uid;
+                        console.log(uid);
                         let newPerfil = this.get('store').createRecord('perfiles', {
                             urlFoto: urlInput,
                             correo: correo1,
@@ -35,7 +36,6 @@ export default Controller.extend({
                         this.transitionToRoute('principal');
                     },(error) =>{
                         var errorMessage = error.message;
-                        console.log(errorMessage);  
                         if (errorMessage === 'The email address is already in use by another account.'){
                             this.set('correoEnUso', true);
                             setTimeout(() => {
@@ -71,7 +71,6 @@ export default Controller.extend({
                     this.set('password', '');
                     this.transitionToRoute('principal');
                 }, (error) => {
-                    console.log(error);
                     var errorMessage = error.message;
                     if (errorMessage === 'There is no user record corresponding to this identifier.The user may have been deleted.' || errorMessage === 'The email address is badly formatted.') {
                         this.set('correoNoRegistrado', true);

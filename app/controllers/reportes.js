@@ -12,5 +12,16 @@ export default Controller.extend({
                 // An error happened.
             });
         },
+        eliminarReporte(publicacion) {
+            publicacion.set('reportado', false);
+            publicacion.set('descripcionReporte', '');
+            publicacion.save();
+        },
+
+        eliminarPublicacion(publicacion) {
+            publicacion.deleteRecord();
+            publicacion.get('isDeleted');
+            publicacion.save();
+        }
     },
 });

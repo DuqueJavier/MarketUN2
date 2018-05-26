@@ -6,13 +6,14 @@ const Router = EmberRouter.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() { 
+Router.map(function() {
   this.route('principal');
   this.route('registro');
-  this.route('perfil', );
+  this.route('perfil');
   this.route('editar-perfil');
   this.route('crear-publicacion');
   this.route('reportes');
+  this.route('publicacion', { path: ':pub_id' });
 });
 
 export default Router;

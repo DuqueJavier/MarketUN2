@@ -12,9 +12,19 @@
     background: rgb(223, 223, 224); 
 }
 .card-img-top{
-    width: 150px;
-    height: 200px;
-    padding: 1rem;
+    width: 290px;
+    height: 250px;
+    padding: 2rem;
+}
+.tarjeta{
+    text-decoration: none;
+    color: #333;
+    width: 290px;
+    height: 350px;
+}
+.card-deck{
+    flex-wrap: wrap;
+    padding-left: 2rem;
 }
 
 .titulo-perfil{
@@ -22,6 +32,9 @@
     padding-bottom: 15px;
     margin-bottom: 15px;
     max-width: 430px;    
+}
+.publicacion{
+    margin-top: 3%;
 }
 
 .item{

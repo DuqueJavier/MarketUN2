@@ -5,10 +5,11 @@ import ValidarUsuarioMixin from '../mixins/validar-usuario';
 export default Route.extend(ValidarUsuarioMixin, {
 
     model: function () {
-        const uid = this.modelFor('application').get('firstObject').get('uid');
+        const perfil = this.modelFor('application').get('firstObject');
+        var correo = perfil.correo;
         return hash({
             perfil: this.modelFor('application').get('firstObject'),
-            publicaciones: this.store.query('publicaciones', { orderBy: 'uidPerfil', equalTo: uid }),
+            publicaciones: this.store.query('publicaciones', { orderBy: 'correo', equalTo: correo }),
         });
     },
 });

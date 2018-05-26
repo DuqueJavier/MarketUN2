@@ -5,8 +5,9 @@ import { hash } from 'rsvp';
 export default Route.extend(ValidarUsuarioMixin, {
     model: function () {
         return hash({
-            perfil: this.modelFor('application'),
+            perfil: this.modelFor('application').get('firstObject'),
+            //publicacion: this.store.query('publicaciones', { orderBy: 'id', limitToLast: 1, }),
         });
-    }, 
+    },
 });
 
