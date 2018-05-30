@@ -25,20 +25,28 @@
                     {{input type="text" class="form-control" value=contrasena id="contrasena" placeholder="Constraseña"}}<br>
                     {{input type="text" class="form-control" value=nombres id="nombres" placeholder="Nombres"}} <br>
                     {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder="Apellidos"}}<br>  
-                    {{input type="text" class="form-control" value=urlFoto id="urlFoto" placeholder="URL de la Foto"}}                    <br>
+                    {{input type="text" class="form-control" value=urlFoto id="urlFoto" placeholder="URL de la foto de perfil"}}                    <br>
                     {{input type="number" min="999999" max="10000000000" class="form-control" value=celular id="celular" placeholder="Numero de telefono o celular"}}
                 </div>
                 {{#if camposEnBlanco}}
                 <div class="alert alert-warning fade show" role="alert">
-                    Hay campos en blanco o muy cortos
+                    Hay campos en blanco o muy cortos.
+                </div>
+                {{else if celularInvalido}}
+                <div class="alert alert-warning fade show" role="alert">
+                    El numero debe tener mínimo 7 dígitos y máximo 10.
+                </div>
+                {{else if correoInvalido}}
+                <div class="alert alert-warning fade show" role="alert">
+                    El correo no tiene un formato valido.
                 </div>
                 {{else if correosNoCoinciden}}
                 <div class="alert alert-warning fade show" role="alert">
-                    Los correos no coinciden
+                    Los correos no coinciden.
                 </div>
                 {{else if correoEnUso}}
                 <div class="alert alert-warning fade show" role="alert">
-                    El correo indicado ya tiene una cuenta registrada
+                    El correo indicado tiene una cuenta registrada.
                 </div>
                 {{/if}}
                 <div class="d-flex flex-row justify-content-around">

@@ -15,7 +15,7 @@
     <div class="row card-deck px-4 py-4">
      {{#each model.publicaciones as |publicacion|}}        
          <div class="card">   
-            {{#link-to "publicacion" publicacion.id class="tarjeta"}}
+            {{#link-to "publicacion" publicacion.codigo class="tarjeta"}}
                 <img class="card-img-top" src="{{publicacion.foto}}">
                 <div class="card-body">
                     <h4 class="card-title rounded">

@@ -6,6 +6,6 @@ export default DS.Model.extend({
     correo: DS.attr('string'),
     celular: DS.attr('number'),
     urlFoto: DS.attr('string'),
-    administrador: DS.attr('boolean', { defaultValue: false }),
+    moderador: DS.attr('boolean', { defaultValue: false }),
     uid: DS.attr('string'),
 });

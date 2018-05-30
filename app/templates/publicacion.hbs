@@ -42,8 +42,35 @@
         </div>
         <div class="col-md-4 text-center">
             <h4><strong>Para obtener este producto debes comunicarte con el vendedor </strong></h4><br>
-            <button class="btn btn-danger my-2 my-sm-0" {{action 'ver'}}>Ver datos</button>
-            {{outlet}}
+            <br>
+            <div class="p-3 bg-secondary text-white rounded">
+                {{#each model.perfiles as |vendedor|}}
+                {{#is vendedor.correo "jaaduquelu@unal.edu.co"}}
+                <h4><strong>Datos del vendedor: </strong></h4>
+                <h5><strong>Nombre: </strong>{{vendedor.nombres}} {{vendedor.apellidos}}</h5>
+                <h5><strong>Correo: </strong>{{vendedor.correo}}</h5>
+                <h5><strong>Celular: </strong>{{vendedor.celular}}</h5>
+                {{/is}}
+                {{/each}}
+            </div><br>
+            {{#if publicacionReportada}}
+                <div class="alert alert-warning fade show" role="alert">
+                    Hemos enviado tu reporte a los moderadores para ser atentido lo pronto posible.
+                </div>
+            {{else}}
+                {{#if reportar}}
+                <button class="btn btn-danger my-2" {{action 'reportarPublicacion'}}>Reportar Publicacióm</button>
+                {{else}}
+                    <label><strong>Agrega una descripcion de lo que esta mal</strong></label>
+                    {{textarea type="text" class="form-control" value=descripcionReporte id="descripcionReporte" placeholder="Descripcion"}}
+                    {{#if descripcionEnBlanco}}
+                    <div class="alert alert-warning fade show" role="alert">
+                        Hay campos en blanco o muy cortos.
+                    </div>
+                    {{/if}}
+                <button class="btn btn-danger my-2" {{action 'reportar' uno}}>Reportar</button>
+                {{/if}}
+            {{/if}}
         </div>       
     {{/each}}
 </div>

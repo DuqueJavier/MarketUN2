@@ -8,7 +8,7 @@ export default Mixin.create({
         const isAuthenticated = this.get('session.isAuthenticated');
         if (isAuthenticated) {
             const currentUser = this.modelFor('application').get('firstObject');
-            if (currentUser.get('administrador')) {
+            if (currentUser.get('moderador')) {
                 this.transitionTo('reportes');
             }
         } else {

@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
     firebaseApp: service(),
 
-    contrasenaNoValida: false, correoNoRegistrado: false, correoEnUso: false, correosNoCoinciden: false, camposEnBlanco: false, vacio: false, error: false, ok: false,
+    contrasenaNoValida: false, correoNoRegistrado: false, correoEnUso: false, correosNoCoinciden: false, camposEnBlanco: false, vacio: false, error: false, celularInvalido: false,
     emailR: '', emailR2: '', nombres: '', apellidos: '', celular: '', contrasena: '',
     email: '', password:'', urlFoto: '',
     
@@ -14,12 +14,18 @@ export default Controller.extend({
             let correo1 = this.get('emailR');let correo2 = this.get('emailR2');
             let nombresInput = this.get('nombres');  let apellidosInput = this.get('apellidos');
             let celularInput = this.get('celular');  let contrasenaInput = this.get('contrasena');
-            if (nombresInput.length < 2 || apellidosInput.length < 2 || celularInput.length < 2 || correo1.length < 2 || urlInput.length < 2){
+            if (nombresInput.length < 2 || apellidosInput.length < 2 || correo1.length < 2 || correo1.length < 2 || urlInput.length < 2){
                 this.set('camposEnBlanco', true);
                 setTimeout(() => {
                     this.set('camposEnBlanco', false);
                 }, 5000);       
-            }else if(correo1 === correo2){              
+            }else if(celularInput.length < 7 || celularInput.length > 10){
+                this.set('celularInvalido', true);
+                setTimeout(() => {
+                    this.set('celularInvalido', false);
+                }, 5000); 
+            }
+            else if(correo1 === correo2){              
                 this.get('firebaseApp').auth().createUserWithEmailAndPassword(correo1, contrasenaInput).then(
                     (user) =>{
                         var uid = user.uid;
@@ -36,13 +42,20 @@ export default Controller.extend({
                         this.transitionToRoute('principal');
                     },(error) =>{
                         var errorMessage = error.message;
+                        if (errorMessage === 'The email address is badly formatted.') {
+                            this.set('correoInvalido', true);
+                            setTimeout(() => {
+                                this.set('correoInvalido', false);
+                            }, 5000);
+                        } 
                         if (errorMessage === 'The email address is already in use by another account.'){
                             this.set('correoEnUso', true);
                             setTimeout(() => {
                                 this.set('correoEnUso', false);
                             }, 5000); 
-                        }                        
-                    }
+                        } 
+                                               
+                    } 
                 );
             }else{
                 this.set('correosNoCoinciden', true);

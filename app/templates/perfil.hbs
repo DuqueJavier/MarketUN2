@@ -58,15 +58,8 @@
                         <h4 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h4>
                     </div>
                  {{/link-to}}
-                <div class="card-footer d-flex flex-row justify-content-between">
-                    <div>
-                        <h4>
-                            <strong>Precio: $</strong>
-                        </h4>
-                    </div>
-                    <div>
-                        <h4>{{publicacion.precio}}</h4>
-                    </div>
+                <div class="card-footer d-flex flex-row justify-content-around">
+                    <button class="btn btn-danger my-2" {{action 'eliminar' publicacion.id}}>Eliminar publicación</button>
                 </div>
             </div>
             {{/each}}

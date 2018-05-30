@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
     session: service(),
     camposEnBlanco: false, vacio: false, error: false, perfilEditado: false,
-    nombres: '', apellidos: '', celular: '', contrasena: '',
+    nombres: '', apellidos: '', celular: '', contrasena: '', urlFoto: '',
 
     actions: {
         cerrar() {
@@ -18,6 +18,7 @@ export default Controller.extend({
         editar(perfil) {
             let nombresInput = this.get('nombres'); let apellidosInput = this.get('apellidos');
             let celularInput = this.get('celular'); let contrasenaInput = this.get('contrasena');
+            let fotoInput = this.get('urlFoto');
 
             if (nombresInput.length < 1){
                 nombresInput = perfil.get('nombres')
@@ -31,16 +32,20 @@ export default Controller.extend({
             if (contrasenaInput.length < 1){
                 contrasenaInput = perfil.get('contrasena')
             }
+            if (fotoInput.length < 1) {
+                fotoInput = perfil.get('urlFoto')
+            }
             perfil.set('nombres', nombresInput);
             perfil.set('apellidos', apellidosInput);
             perfil.set('celular', celularInput);
             perfil.set('contrasena', contrasenaInput);
+            perfil.set('urlFoto', fotoInput);
             perfil.save(); 
             this.set('nombres', '');
             this.set('apellidos', '');
             this.set('celular', '');
             this.set('contrasena', '');
-            this.set('perfilEditado', true);
+            this.set('urlFoto', '');
         },
     },
 });

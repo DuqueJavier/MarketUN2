@@ -12,5 +12,11 @@ export default Controller.extend({
                 // An error happened.
             });
         },
+
+        eliminar(publicacion) {
+            publicacion.deleteRecord();
+            publicacion.get('isDeleted');
+            publicacion.save();
+        }
     },
 });

@@ -17,7 +17,7 @@
 <div class="col-md-9 ml-5">
     {{#if publicacionCreada}}
         <br><br>
-        <h2 class="ml-5"><strong>Tu publicacion se ha creado exitosamente! </strong></h2>
+        <h2 class="ml-5"><strong>Tu publicación se ha creado exitosamente! </strong></h2>
         <br><br>
     {{else}}
     <br><strong>Puedes crear publicaciones totalmente gratis</strong> <br><br>
@@ -32,7 +32,7 @@
                 {{/select}}
             </select> -->
             <br> {{input type="text" class="form-control" value=titulo id="titulo" placeholder="Titulo de la publicación"}}
-            <br> {{textarea type="text" class="form-control" value=descripcion id="descripcion" placeholder="Breve descripcion de tu producto"}}
+            <br> {{textarea type="text" class="form-control" value=descripcion id="descripcion" placeholder="Describe tu producto"}}
             <br> {{input type="text" class="form-control" value=precio id="precio" placeholder="Precio en pesos colombianos"}}
             <br> {{input type="text" class="form-control" value=foto id="foto" placeholder="URL de la imagen"}}
 
@@ -51,7 +51,7 @@
         </div>
         {{/if}}<br>
         <div class="d-flex flex-row justify-content-around">
-            <button type="submit" class="btn btn-success" {{action 'crear' model.perfil}}>PUBLICAR</button>
+            <button type="submit" class="btn btn-success" {{action 'crear' model.perfil}}>Publicar</button>
         </div>
     </form>
     {{/if}}

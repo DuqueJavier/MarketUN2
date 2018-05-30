@@ -18,7 +18,7 @@ export default Controller.extend({
             publicacion.save();
         },
 
-        eliminarPublicacion(publicacion) {
+        eliminar(publicacion) {
             publicacion.deleteRecord();
             publicacion.get('isDeleted');
             publicacion.save();

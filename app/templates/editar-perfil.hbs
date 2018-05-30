@@ -34,12 +34,9 @@
                 {{input type="text" class="form-control" value=apellidos id="apellidos" placeholder=model.perfil.apellidos}}
                 <label><strong>Celular</strong></label>
                 {{input type="text" class="form-control" value=celular id="celular" placeholder=model.perfil.celular}}
+                <label><strong>URL de la foto</strong></label>
+                {{input type="text" class="form-control" value=urlFoto id="urlFoto" placeholder=model.perfil.urlFoto}}
             </div>
-            {{#if camposEnBlanco}}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Hay campos que no han sido llenados
-            </div>
-            {{/if}}
             <div class="d-flex flex-row justify-content-around">
                 <button class="btn btn-success" {{action 'editar' model.perfil}}> Editar </button>
             </div>
