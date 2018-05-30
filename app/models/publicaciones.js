@@ -7,5 +7,6 @@ export default DS.Model.extend({
     precio: DS.attr('string'),
     reportado: DS.attr('boolean', { defaultValue: false }),
     descripcionReporte: DS.attr('string'),
+    codigo: DS.attr('number'),
     correo: DS.attr('string'),
 });

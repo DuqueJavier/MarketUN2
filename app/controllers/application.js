@@ -11,12 +11,4 @@ export default Controller.extend({
         });
     },
 
-    loadProfileByUid(uid) {
-        return this.store.query('perfiles', {
-            orderBy: 'uid',
-            equalTo: uid,
-            }).then((perfiles) => {
-               return perfiles.get('firstObject');
-        });
-    },
 });

@@ -14,9 +14,20 @@ export default Controller.extend({
             }).catch(function (error) {
                 // An error happened.
             });
+        },    
+        
+        nuevo(){            
+            this.set('titulo', '');
+            this.set('descripcion', '');
+            this.set('precio', '');
+            this.set('foto', '');
+            this.set('descripcionReporte', '');
+            this.set('publicacionCreada', false); 
         },
         
-        crear(perfil){ 
+        crear(perfil, iden){ 
+            var cod = parseInt(iden);
+            cod++;        
             var correo = perfil.correo; 
             let tituloInput = this.get('titulo');
             let descripcionInput = this.get('descripcion');
@@ -37,6 +48,7 @@ export default Controller.extend({
                     precio: precioInput,
                     descripcionReporte: descripcionReporteInput,
                     correo: correo,
+                    codigo: cod,
                 });
                 newPublicacion.save();
                 this.set('publicacionCreada', true);

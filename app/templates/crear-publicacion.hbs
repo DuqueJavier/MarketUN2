@@ -17,7 +17,8 @@
 <div class="col-md-9 ml-5">
     {{#if publicacionCreada}}
         <br><br>
-        <h2 class="ml-5"><strong>Tu publicación se ha creado exitosamente! </strong></h2>
+        <h2 class="ml-5"><strong>Tu publicación se ha creado exitosamente! </strong></h2><br>
+        <button class="btn btn-success" {{action 'nuevo'}}>Publicar otro articulo</button>
         <br><br>
     {{else}}
     <br><strong>Puedes crear publicaciones totalmente gratis</strong> <br><br>
@@ -51,7 +52,9 @@
         </div>
         {{/if}}<br>
         <div class="d-flex flex-row justify-content-around">
-            <button type="submit" class="btn btn-success" {{action 'crear' model.perfil}}>Publicar</button>
+            {{#each model.publicacion as |uno|}}
+            <button class="btn btn-success" {{action 'crear' model.perfil uno.codigo}}>Publicar</button>
+            {{/each}}
         </div>
     </form>
     {{/if}}

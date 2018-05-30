@@ -52,14 +52,14 @@
             {{#each model.publicaciones as |publicacion|}}
             
             <div class="card">
-                 {{#link-to "publicacion" publicacion.id class="tarjeta"}}
+                 {{#link-to "publicacion" publicacion.codigo class="tarjeta"}}
                     <img class="card-img-top" src="{{publicacion.foto}}">
                     <div class="card-body">
                         <h4 class="card-title rounded"><strong>{{publicacion.titulo}}</strong></h4>
                     </div>
                  {{/link-to}}
                 <div class="card-footer d-flex flex-row justify-content-around">
-                    <button class="btn btn-danger my-2" {{action 'eliminar' publicacion.id}}>Eliminar publicación</button>
+                    <button class="btn btn-danger my-2" {{action 'eliminar' publicacion}}>Eliminar publicación</button>
                 </div>
             </div>
             {{/each}}
