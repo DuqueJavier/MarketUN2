@@ -10,7 +10,7 @@
             <strong class="mx-4">{{model.perfil.nombres}} </strong>
         </h3>
         {{link-to 'Mi perfil' 'perfil' class="btn btn-warning mx-3"}}
-        <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesion</button>
+        <button class="btn btn-danger my-2 my-sm-0" {{action 'cerrar'}}>Cerrar sesión</button>
     </form>
 </nav>
 
@@ -55,7 +55,7 @@
             </div><br>
             {{#if publicacionReportada}}
                 <div class="alert alert-warning fade show" role="alert">
-                    Hemos enviado tu reporte a los moderadores para ser atentido lo pronto posible.
+                    Hemos enviado tu reporte a los moderadores.
                 </div>
             {{else}}
                 {{#if reportar}}
@@ -65,7 +65,7 @@
                     {{textarea type="text" class="form-control" value=descripcionReporte id="descripcionReporte" placeholder="Descripcion"}}
                     {{#if descripcionEnBlanco}}
                     <div class="alert alert-warning fade show" role="alert">
-                        Hay campos en blanco o muy cortos.
+                        Debes incluir una descripción de al menos 10 letras.
                     </div>
                     {{/if}}
                 <button class="btn btn-danger my-2" {{action 'reportar' uno}}>Reportar</button>
